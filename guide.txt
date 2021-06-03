@@ -1,0 +1,32 @@
+setting up database
+> go to python environment
+
+> from app import db
+
+> db.create_all()
+
+> from app import BlogPost
+
+> BlogPost.query.all()
+
+> db.session.add(BlogPost(title='Blog Post 1', content='Content of Blog Post 1', author='Romz'))
+
+> BlogPost.query.all() [0].content - call the first record with the content column
+
+> BlogPost.query[5] - call by index number
+
+> BlogPost.query.filter_by(title='First Post').all()   - filters and call that matches
+
+> BlogPost.query.get(5) - call data by Primary Key 
+
+
+note: from app import db, BlogPost
+
+// deleting----------------------
+> db.session.delete(BlogPost.query.get(3))
+> db.session.commit()
+
+
+//update------------------------
+> BlogPost.query.get(1).title = 'New Title'
+> db.session.commit()

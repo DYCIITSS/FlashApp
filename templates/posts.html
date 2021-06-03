@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block head %}
+Posts
+{% endblock %}
+
+{% block body %}
+<!-- <hr>
+<div class="container">
+    <h2> Crate New Blog Post: </h2>
+    <form action='/posts' method='POST'>
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" />
+        </div>
+        <div class="form-group">
+            <label for="author">Author: </label>
+            <input type="text" class="form-control" id="author" name="author" placeholder="Enter Author Name " />
+        </div>
+        <div class="form-group">
+            <label for="content">Post: </label>
+            <textarea class="form-control" id="content" name="content" rows="3" placeholder="Enter Content"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" value='Post'>Post</button>
+    </form>
+</div>
+<hr> -->
+
+<main role="main" class="container">
+<br>
+<h1>All Posts  <a href ='/posts/new' type="button" class="btn btn-sm btn-primary float-right">+ New Post</a> </h1> 
+<hr> <br>
+    {% for post in posts %}
+        <div class="jumbotron">
+            <h2>{{ post.title }}</h2>
+            {% if post.author %}
+            <h6 class="text-muted"><i>Written By: {{ post.author }}</i> on {{ post.date_posted }}</h6>
+            {% else %}
+            <h5><i>Written By: N/A</i></h5>
+            {% endif %}
+            
+            <p class="lead">{{ post.content }}</p>
+            <a href ='/posts/delete/{{post.id}}' type="button" class="btn btn-danger">Delete</a>
+            <a href ='/posts/edit/{{post.id}}' type="button" class="btn btn-success">Edit</a>
+            <hr>
+        </div>
+    {% endfor %}
+</main>
+{% endblock %}
